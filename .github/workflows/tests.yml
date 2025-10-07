@@ -39,9 +39,9 @@ jobs:
       - name: Install requirements using pip
         shell: bash
         run: |
-          python3 -m pip install --upgrade pip setuptools
-          python3 -m pip install --requirement requirements_test.txt
+          uv sync
+          uv pip install .
 
-      - name: Run tox
+      - name: Run ci checks
         shell: bash
-        run: python3 -m tox
+        run: uv run invoke ci
